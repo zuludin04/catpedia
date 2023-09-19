@@ -9,13 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            List(catDummyData, id: \.name) { cat in
+                NavigationLink {
+                    CatDetail(cat: cat)
+                } label: {
+                    CatItem(cat: cat)
+                }
+            }
+            .navigationTitle("Catpedia")
+            .toolbar {
+                NavigationLink {
+                    ProfilePage()
+                } label: {
+                    Image(systemName: "person.crop.circle")
+                }
+            }
         }
-        .padding()
     }
 }
 
